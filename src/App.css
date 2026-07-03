@@ -1,0 +1,49 @@
+.card {
+  max-width: 320px;
+  margin: 12vh auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+}
+
+.card h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card input,
+.card button {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.card button[type="submit"] {
+  cursor: pointer;
+  border: none;
+  background: #4f46e5;
+  color: white;
+}
+
+.card .link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.card .error {
+  color: #dc2626;
+  font-size: 0.9rem;
+}
