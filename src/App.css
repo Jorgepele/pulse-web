@@ -48,6 +48,69 @@
   font-size: 0.9rem;
 }
 
+/* --- landing page -------------------------------------------------------- */
+.landing {
+  max-width: 720px;
+  margin: 6vh auto;
+  padding: 0 1rem;
+  font-family: system-ui, sans-serif;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+.hero .tagline {
+  margin: 0.5rem auto 0;
+  max-width: 30rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.pricing {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.plan {
+  min-width: 150px;
+  padding: 1.25rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.plan h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.plan .price {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.plan .price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #888;
+}
+
+.plan .muted {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.landing .card {
+  margin: 0 auto;
+}
+
 /* --- logged-in view: the feedback board ---------------------------------- */
 .page {
   max-width: 640px;

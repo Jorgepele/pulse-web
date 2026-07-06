@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, getToken, clearToken } from "./api";
-import AuthForm from "./AuthForm";
+import Landing from "./Landing";
 import PostList from "./PostList";
 import "./App.css";
 
@@ -29,14 +29,9 @@ export default function App() {
 
   if (!ready) return null;
 
-  // --- logged out: show the auth form --------------------------------------
+  // --- logged out: show the landing page (pitch + pricing + auth) -----------
   if (!user) {
-    return (
-      <main className="card">
-        <h1>Pulse</h1>
-        <AuthForm onAuthed={setUser} />
-      </main>
-    );
+    return <Landing onAuthed={setUser} />;
   }
 
   // --- logged in: show the feedback board ----------------------------------
