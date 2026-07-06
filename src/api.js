@@ -2,7 +2,9 @@
 // One place that knows the base URL, stores the auth token, and attaches it
 // to every request. The rest of the app just calls api.get / api.post.
 
-const BASE_URL = "http://127.0.0.1:8000";
+// In production, set VITE_API_URL to the deployed API. Falls back to the local
+// Django dev server so `npm run dev` works with no configuration.
+const BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 const TOKEN_KEY = "pulse_token";
 
 // --- token storage (kept in the browser's localStorage) ---------------------
