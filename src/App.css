@@ -168,3 +168,77 @@
   color: #dc2626;
   font-size: 0.9rem;
 }
+
+.post-body {
+  flex: 1;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.post-meta .link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+/* --- comment thread ------------------------------------------------------ */
+.comments {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.comments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.comments li {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.comments li small {
+  color: #888;
+}
+
+.comments .muted {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.comments form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comments input {
+  flex: 1;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.comments button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+}
