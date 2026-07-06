@@ -7,14 +7,17 @@ import Comments from "./Comments";
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   const [openId, setOpenId] = useState(null); // which post has its comments open
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   // Load the posts from the API. Kept as a named function so we can also call it
   // again after adding a new post.
   function loadPosts() {
+    setLoading(true);
     api.get("/api/posts/")
       .then((data) => setPosts(data.results)) // paginated response → use `results`
-      .catch((err) => setError(err.message));
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }
 
   useEffect(loadPosts, []); // run once, when the component first renders
@@ -53,6 +56,11 @@ export default function PostList() {
       <NewPostForm onCreated={loadPosts} />
 
       {error && <p className="error">{error}</p>}
+
+      {loading && <p className="muted">Loading…</p>}
+      {!loading && posts.length === 0 && (
+        <p className="muted">No posts yet — add the first feature request above.</p>
+      )}
 
       <ul>
         {posts.map((post) => (

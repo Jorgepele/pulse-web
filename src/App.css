@@ -265,6 +265,11 @@
   font-size: 0.9rem;
 }
 
+.posts .muted {
+  color: #888;
+  font-size: 0.95rem;
+}
+
 .post-body {
   flex: 1;
 }
