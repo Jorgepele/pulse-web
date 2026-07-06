@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api, getToken, clearToken } from "./api";
 import Landing from "./Landing";
 import PostList from "./PostList";
+import Billing from "./Billing";
 import "./App.css";
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
           <button className="link" onClick={handleLogout}>Log out</button>
         </div>
       </header>
+      <Billing />
       <PostList />
     </main>
   );
