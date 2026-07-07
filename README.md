@@ -14,6 +14,20 @@
 
 ---
 
+## Live demo · Demo en vivo
+
+Deployed on Render (free tier — the first load may take ~30 s while the service
+wakes up):
+
+**https://pulse-web-lvhx.onrender.com**
+
+Log in with the demo account: `demo@pulse.dev` / `demo12345`.
+
+Desplegado en Render (plan gratis — la primera carga puede tardar ~30 s mientras
+el servicio arranca). Entra con la cuenta demo: `demo@pulse.dev` / `demo12345`.
+
+---
+
 ## What it does so far · Qué hace por ahora
 
 - A landing page with the pitch and the pricing tiers (read from the API).
