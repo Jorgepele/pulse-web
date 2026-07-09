@@ -61,8 +61,9 @@ To point the app at a different API (e.g. a deployed one), set `VITE_API_URL`.
 
 ## Next steps · Siguientes pasos
 
-- Loading and empty states while data is fetched.
-- Deploy alongside the API (see `render.yaml` and the API's `DEPLOY.md`).
+- Client-side form validation and clearer error messages.
+- Filter the board by status (open / planned / done …).
+- A few component tests (CI currently runs lint + build only).
 
 ---
 
