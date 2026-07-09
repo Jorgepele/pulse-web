@@ -60,10 +60,21 @@ Then open the URL Vite prints (usually `http://localhost:5173`).
 
 To point the app at a different API (e.g. a deployed one), set `VITE_API_URL`.
 
+## Tests · Tests
+
+```bash
+npm run test        # Vitest + React Testing Library (component tests)
+npm run lint        # oxlint
+```
+
+The component tests stub the API and check UI behaviour (the login/register
+toggle, and that the board's status filter refetches with `?status=`). CI runs
+lint, tests and build on every push (see the badge above).
+
 ## Next steps · Siguientes pasos
 
 - Client-side form validation and clearer error messages.
-- A few component tests (CI currently runs lint + build only).
+- End-to-end tests against a running API.
 
 ---
 
