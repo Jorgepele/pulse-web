@@ -12,6 +12,8 @@
 
 **Stack:** JavaScript · React 19 · Vite
 
+![The Pulse feedback board: feature requests with upvotes, status filter pills and comment counts](docs/screenshot.png)
+
 ---
 
 ## Live demo · Demo en vivo
