@@ -207,6 +207,29 @@
   color: white;
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+}
+
+.filter {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+}
+
+.filter.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: white;
+}
+
 .posts ul {
   list-style: none;
   padding: 0;

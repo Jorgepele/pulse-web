@@ -3,24 +3,36 @@ import { api } from "./api";
 import NewPostForm from "./NewPostForm";
 import Comments from "./Comments";
 
+// Status filters shown above the board. Empty value means "all".
+const STATUS_FILTERS = [
+  { value: "", label: "All" },
+  { value: "open", label: "Open" },
+  { value: "planned", label: "Planned" },
+  { value: "in_progress", label: "In progress" },
+  { value: "done", label: "Done" },
+  { value: "declined", label: "Declined" },
+];
+
 // The feedback board: the list of feature requests, each with an upvote button.
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   const [openId, setOpenId] = useState(null); // which post has its comments open
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [status, setStatus] = useState(""); // active status filter ("" = all)
 
-  // Load the posts from the API. Kept as a named function so we can also call it
-  // again after adding a new post.
+  // Load the posts from the API, applying the status filter when one is set.
+  // Kept as a named function so we can also call it again after adding a post.
   function loadPosts() {
     setLoading(true);
-    api.get("/api/posts/")
+    const query = status ? `?status=${status}` : "";
+    api.get(`/api/posts/${query}`)
       .then((data) => setPosts(data.results)) // paginated response → use `results`
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }
 
-  useEffect(loadPosts, []); // run once, when the component first renders
+  useEffect(loadPosts, [status]); // reload on mount and whenever the filter changes
 
   // Toggle our vote on a post. The API returns the fresh count and whether we
   // now have a vote, so we patch just that post in place — no full reload.
@@ -55,11 +67,27 @@ export default function PostList() {
     <section className="posts">
       <NewPostForm onCreated={loadPosts} />
 
+      <div className="filters">
+        {STATUS_FILTERS.map((f) => (
+          <button
+            key={f.value}
+            className={status === f.value ? "filter active" : "filter"}
+            onClick={() => setStatus(f.value)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
       {error && <p className="error">{error}</p>}
 
       {loading && <p className="muted">Loading…</p>}
       {!loading && posts.length === 0 && (
-        <p className="muted">No posts yet — add the first feature request above.</p>
+        <p className="muted">
+          {status
+            ? "No posts with this status."
+            : "No posts yet — add the first feature request above."}
+        </p>
       )}
 
       <ul>

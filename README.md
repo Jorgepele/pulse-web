@@ -32,7 +32,8 @@ el servicio arranca). Entra con la cuenta demo: `demo@pulse.dev` / `demo12345`.
 
 - A landing page with the pitch and the pricing tiers (read from the API).
 - Login / sign-up against the API's token auth; the token is stored and reused.
-- A feedback board: list feature requests, toggle an upvote, add a new post.
+- A feedback board: list feature requests, filter them by status, toggle an
+  upvote, add a new post.
 - A comment thread under each post.
 - A (demo) plan picker to subscribe the organization to a plan.
 - Logout clears the token.
@@ -62,7 +63,6 @@ To point the app at a different API (e.g. a deployed one), set `VITE_API_URL`.
 ## Next steps · Siguientes pasos
 
 - Client-side form validation and clearer error messages.
-- Filter the board by status (open / planned / done …).
 - A few component tests (CI currently runs lint + build only).
 
 ---
