@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api, getToken, clearToken } from "./api";
+import { api, getToken, clearToken, setUnauthorizedHandler } from "./api";
 import Landing from "./Landing";
 import PostList from "./PostList";
 import Billing from "./Billing";
@@ -10,6 +10,11 @@ export default function App() {
   // checked whether an existing token is still valid.
   const [user, setUser] = useState(null);
   const [ready, setReady] = useState(false);
+
+  // If the API ever rejects our token, fall back to the logged-out view.
+  useEffect(() => {
+    setUnauthorizedHandler(() => setUser(null));
+  }, []);
 
   // On first render: if we already have a token, ask the API who we are.
   useEffect(() => {

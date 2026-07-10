@@ -12,6 +12,22 @@ export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const setToken = (token) => localStorage.setItem(TOKEN_KEY, token);
 export const clearToken = () => localStorage.removeItem(TOKEN_KEY);
 
+// Called when the API rejects our token, so the app can send the user back to
+// the login screen instead of showing an error on every action. App sets this.
+let onUnauthorized = () => {};
+export const setUnauthorizedHandler = (handler) => {
+  onUnauthorized = handler;
+};
+
+// DRF reports validation errors as {"field": ["message", ...]}, and everything
+// else as {"detail": "message"}. Pull out something a human can read.
+function errorMessage(data) {
+  if (data.detail) return data.detail;
+  const first = Object.values(data)[0];
+  if (Array.isArray(first) && first.length) return first[0];
+  return typeof first === "string" ? first : "Something went wrong.";
+}
+
 // Core request helper. Adds JSON headers and, if we have one, the auth token.
 async function request(path, { method = "GET", body } = {}) {
   const headers = { "Content-Type": "application/json" };
@@ -26,8 +42,13 @@ async function request(path, { method = "GET", body } = {}) {
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    // DRF returns validation errors as JSON; surface the first useful message.
-    throw new Error(data.detail || JSON.stringify(data));
+    // An expired or revoked token: drop it and let the app log the user out,
+    // rather than leaving them in a session that can no longer do anything.
+    if (response.status === 401 && token) {
+      clearToken();
+      onUnauthorized();
+    }
+    throw new Error(errorMessage(data));
   }
   return data;
 }

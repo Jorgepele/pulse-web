@@ -9,8 +9,13 @@ export default function Billing() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    api.get("/api/plans/").then((data) => setPlans(data.results)).catch(() => {});
-    api.get("/api/billing/subscription/").then(setSub).catch(() => {});
+    // A failed plan list leaves the user with no buttons and no explanation,
+    // so say so rather than swallowing the error.
+    api.get("/api/plans/")
+      .then((data) => setPlans(data.results))
+      .catch((err) => setMessage(err.message));
+    // No subscription yet is the normal case for a new org, not an error.
+    api.get("/api/billing/subscription/").then(setSub).catch(() => setSub(null));
   }, []);
 
   async function subscribe(slug) {

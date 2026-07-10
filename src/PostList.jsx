@@ -27,7 +27,10 @@ export default function PostList() {
     setLoading(true);
     const query = status ? `?status=${status}` : "";
     api.get(`/api/posts/${query}`)
-      .then((data) => setPosts(data.results)) // paginated response → use `results`
+      .then((data) => {
+        setPosts(data.results); // paginated response → use `results`
+        setError(""); // a successful reload clears any earlier failure
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }
